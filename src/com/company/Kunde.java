@@ -9,8 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.lang.Comparable;
 
-    public class Kunde {
+public class Kunde implements Comparable<Kunde>{
 
     private String name;
     private String vorname;
@@ -40,6 +41,7 @@ import java.util.Scanner;
 
     }
 
+    //Diese Methode list den Kundenbestand aus einer csv Datei (Inhalte getrennt durch Semikolon) ein gibt eine Liste mit Kunden-Objekten zurück.
     public static List<Kunde> kundenbestandEinlesen (String datei) throws IOException {
 
         BufferedReader in = null;
@@ -59,6 +61,13 @@ import java.util.Scanner;
         return kunden;
     }
 
+    @Override
+    public int compareTo(Kunde o) {
+        int firstCmp = this.getName().compareTo(o.getName());
+        return firstCmp != 0 ? firstCmp :  this.getVorname().compareTo(o.getVorname());
+    }
+
+    //Diese Methode erzeugt Kunden-Objekte
     private static Kunde createKunde(String[] metadata) {
         String name = metadata[0];
         String vorname = metadata[1];
@@ -74,8 +83,80 @@ import java.util.Scanner;
         return new Kunde(name, vorname, straße, hausNr, plz, stadt, telefonNr, mobilNr, eMail);
     }
 
-    public String toString() {
-        return "Kunde [Name= " + name + ", Vorname= " + vorname + ", Straße= " + straße + "]";
-    }
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getVorname() {
+            return vorname;
+        }
+
+        public void setVorname(String vorname) {
+            this.vorname = vorname;
+        }
+
+        public String getStraße() {
+            return straße;
+        }
+
+        public void setStraße(String straße) {
+            this.straße = straße;
+        }
+
+        public int getHausNr() {
+            return hausNr;
+        }
+
+        public void setHausNr(int hausNr) {
+            this.hausNr = hausNr;
+        }
+
+        public int getPlz() {
+            return plz;
+        }
+
+        public void setPlz(int plz) {
+            this.plz = plz;
+        }
+
+        public String getStadt() {
+            return stadt;
+        }
+
+        public void setStadt(String stadt) {
+            this.stadt = stadt;
+        }
+
+        public String getTelefonNr() {
+            return telefonNr;
+        }
+
+        public void setTelefonNr(String telefonNr) {
+            this.telefonNr = telefonNr;
+        }
+
+        public String getMobilNr() {
+            return mobilNr;
+        }
+
+        public void setMobilNr(String mobilNr) {
+            this.mobilNr = mobilNr;
+        }
+
+        public String geteMail() {
+            return eMail;
+        }
+
+        public void seteMail(String eMail) {
+            this.eMail = eMail;
+        }
+
+        public String toString() {
+        return "Kunde [Name= " + name + ", Vorname= " + vorname + ", Straße= " + straße + ", Haus Nr= " + hausNr + ", PLZ= " + plz + ", Stadt= " + stadt + ", TelefonNr= " + telefonNr + ", MobilNr= " + mobilNr + ", E-Mail= " + eMail + "]";
+        }
 
 }
